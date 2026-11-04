@@ -1,0 +1,88 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Code Sentinel Report</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--fg:#14171c;--muted:#5b6470;--line:#e3e6ea;--accent:#2563eb;--code:#f1f3f6}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--card:#151b23;--fg:#e6edf3;--muted:#9aa5b1;--line:#262f3a;--accent:#60a5fa;--code:#0b0f14}}
+:root[data-theme=dark]{--bg:#0d1117;--card:#151b23;--fg:#e6edf3;--muted:#9aa5b1;--line:#262f3a;--accent:#60a5fa;--code:#0b0f14}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:24px 16px 64px;overflow-wrap:anywhere}
+h1{font-size:22px;letter-spacing:.06em;margin:0}h2{font-size:18px;margin:32px 0 12px}h3{font-size:15px;margin:0 0 6px}
+.muted{color:var(--muted)}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:12px 0}
+.hero{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center}
+.hero svg{width:100%;height:auto}.score{font-size:56px;font-weight:800;line-height:1}.score small{font-size:20px;color:var(--muted)}
+.level{font-size:18px;font-weight:700;margin-top:6px}
+.bars{display:grid;gap:8px;margin-top:14px}.bar{display:grid;grid-template-columns:200px 1fr 70px;gap:10px;align-items:center;font-size:13px}
+.track{height:10px;background:var(--line);border-radius:6px;overflow:hidden}.fill{height:100%;border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}.tbl{overflow-x:auto}th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}.pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:700;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stat{text-align:center;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.stat b{display:block;font-size:26px}
+pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px;overflow:auto;font-size:12.5px;white-space:pre-wrap;word-break:break-word}
+summary code{word-break:break-all}details{min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--card);margin:8px 0}summary{cursor:pointer;padding:12px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+details .body{padding:0 14px 14px}dl{display:grid;grid-template-columns:190px 1fr;gap:4px 12px;margin:0 0 10px}dt{color:var(--muted)}dd{margin:0}
+.ready td:nth-child(2){font-weight:700;white-space:nowrap}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+@media (max-width:720px){.hero{grid-template-columns:1fr;justify-items:center;text-align:center}.bar{grid-template-columns:1fr 60px}.bar .track{grid-column:1/-1;order:3}.grid{grid-template-columns:repeat(2,1fr)}dl{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<p class="muted" style="margin:0 0 4px">CODE SENTINEL v1.0.0 · 2026-11-04T00:13:41+00:00</p>
+<h1>CODE SENTINEL — RELATÓRIO DE INTEGRIDADE</h1>
+<p class="muted">Projeto <b>healthy-lib</b> · js
+</p>
+<div class="card hero"><div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="CODE SENTINEL - Nivel 4: Alta Integridade">
+  <title>CODE SENTINEL - Nivel 4: Alta Integridade</title>
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#6ff7c8"/>
+      <stop offset="0.55" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#065f46"/>
+    </linearGradient>
+    <linearGradient id="shackle" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b8c2cc"/>
+      <stop offset="0.45" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#b8c2cc"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="0.5" cy="0.55" r="0.5">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff7cc"/>
+      <stop offset="0.5" stop-color="#f5c542"/>
+      <stop offset="1" stop-color="#a06a00"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <ellipse cx="256" cy="330" rx="230" ry="210" fill="url(#aura)"/>
+  <g filter="none" ><path d="M176 262 V166 A80 80 0 0 1 336 166 V262" fill="none" stroke="#2b3138" stroke-width="52" stroke-linecap="round"/><path d="M176 262 V166 A80 80 0 0 1 336 166 V262" fill="none" stroke="url(#shackle)" stroke-width="44" stroke-linecap="round"/><rect x="149.0" y="214" width="54" height="18" rx="5" fill="#5b6670" stroke="#1f252b" stroke-width="2"/><rect x="309.0" y="214" width="54" height="18" rx="5" fill="#5b6670" stroke="#1f252b" stroke-width="2"/></g>
+  <ellipse cx="256" cy="462" rx="140" ry="10" fill="#000" opacity="0.18"/>
+  <rect x="116" y="236" width="280" height="220" rx="40" fill="url(#body)" stroke="#065f46" stroke-width="6"/><rect x="130" y="248" width="252" height="70" rx="28" fill="url(#gloss)"/><path d="M140 300 H190 L205 315 H232" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/><circle cx="140" cy="300" r="6" fill="#ffffff" fill-opacity="0.35"/><path d="M372 300 H322 L307 315 H280" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/><circle cx="372" cy="300" r="6" fill="#ffffff" fill-opacity="0.35"/><path d="M140 410 H180 L195 395 H222" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/><circle cx="140" cy="410" r="6" fill="#ffffff" fill-opacity="0.35"/><path d="M372 410 H332 L317 395 H290" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/><circle cx="372" cy="410" r="6" fill="#ffffff" fill-opacity="0.35"/><path d="M256 438 V418" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="4" stroke-linecap="round"/><circle cx="256" cy="438" r="6" fill="#ffffff" fill-opacity="0.35"/><rect x="122" y="256" width="268" height="12" rx="6" fill="#064e3b" opacity="0.55"/><circle cx="140" cy="262" r="6" fill="#d1fae5" stroke="#064e3b" stroke-width="2"/><circle cx="196" cy="262" r="6" fill="#d1fae5" stroke="#064e3b" stroke-width="2"/><circle cx="316" cy="262" r="6" fill="#d1fae5" stroke="#064e3b" stroke-width="2"/><circle cx="372" cy="262" r="6" fill="#d1fae5" stroke="#064e3b" stroke-width="2"/><rect x="122" y="424" width="268" height="12" rx="6" fill="#064e3b" opacity="0.55"/><circle cx="140" cy="430" r="6" fill="#d1fae5" stroke="#064e3b" stroke-width="2"/><circle cx="196" cy="430" r="6" fill="#d1fae5" stroke="#064e3b" stroke-width="2"/><circle cx="316" cy="430" r="6" fill="#d1fae5" stroke="#064e3b" stroke-width="2"/><circle cx="372" cy="430" r="6" fill="#d1fae5" stroke="#064e3b" stroke-width="2"/>
+  <path d="M256 284 L310 306 V354 C310 388 284 408 256 420 C228 408 202 388 202 354 V306 Z" fill="#053d2e" stroke="#d1fae5" stroke-width="5"/><g transform="translate(0 4) scale(1)"><circle cx="256" cy="336" r="20" fill="#11161c"/><path d="M246 348 L240 388 H272 L266 348 Z" fill="#11161c"/></g>
+  <rect x="176" y="478" width="24" height="10" rx="5" fill="#34d399" stroke="#34d399" stroke-width="2.5" stroke-opacity="1"/><rect x="210" y="478" width="24" height="10" rx="5" fill="#34d399" stroke="#34d399" stroke-width="2.5" stroke-opacity="1"/><rect x="244" y="478" width="24" height="10" rx="5" fill="#34d399" stroke="#34d399" stroke-width="2.5" stroke-opacity="1"/><rect x="278" y="478" width="24" height="10" rx="5" fill="#34d399" stroke="#34d399" stroke-width="2.5" stroke-opacity="1"/><rect x="312" y="478" width="24" height="10" rx="5" fill="none" stroke="#34d399" stroke-width="2.5" stroke-opacity="0.5"/>
+</svg>
+</div><div>
+<div class="muted">CODE INTEGRITY SCORE</div><div class="score">89<small>/100</small></div>
+<div class="level" style="color:#10b981">NÍVEL DE PROTEÇÃO: ALTA INTEGRIDADE · 4/5</div>
+<div class="muted">Confiança da avaliação: <b>Alta</b> (90%) · bruto 90.0</div>
+<div class="bars"><div class="bar"><span>Testes automatizados <span class="muted">· conf. 100%</span></span><div class="track"><div class="fill" style="width:100%;background:#10b981"></div></div><b>20.0/20</b></div><div class="bar"><span>Segurança e vulnerabilidades <span class="muted">· conf. 100%</span></span><div class="track"><div class="fill" style="width:100%;background:#10b981"></div></div><b>25.0/25</b></div><div class="bar"><span>Integridade e lógica <span class="muted">· conf. 82%</span></span><div class="track"><div class="fill" style="width:82%;background:#10b981"></div></div><b>16.5/20</b></div><div class="bar"><span>Estabilidade e tratamento de erros <span class="muted">· conf. 100%</span></span><div class="track"><div class="fill" style="width:100%;background:#10b981"></div></div><b>15.0/15</b></div><div class="bar"><span>Performance <span class="muted">· conf. 70%</span></span><div class="track"><div class="fill" style="width:70%;background:#3b82f6"></div></div><b>7.0/10</b></div><div class="bar"><span>Manutenibilidade <span class="muted">· conf. 65%</span></span><div class="track"><div class="fill" style="width:65%;background:#3b82f6"></div></div><b>6.5/10</b></div></div></div></div>
+<div class="card"><h3>Tetos aplicados</h3><ul><li>máx. <b>89</b>: nível máximo exige lint/análise estática de qualidade executada (ESLint, ruff...)</li></ul></div>
+<div class="card"><h3>Resumo executivo</h3><p>Biblioteca pura e pequena, sem dependências de runtime nem I/O. Toda entrada é validada na fronteira (tipos, finitude, faixas), os casos vazios e de limite estão cobertos por testes que passam, e não há superfície de ataque além dos argumentos das funções. Para produção, falta apenas configurar lint (ESLint) e formatação no CI, que não estão presentes no projeto.</p></div>
+<h2>Parecer</h2><div class="card tbl"><table class="ready"><tr><th>Etapa</th><th>Situação</th><th>Motivos</th></tr><tr><td>Desenvolvimento</td><td>✅ APTO</td><td>sempre apto para continuar o desenvolvimento</td></tr><tr><td>Testes (QA)</td><td>✅ APTO</td><td>código compila; pode ser exercitado por QA</td></tr><tr><td>Homologação</td><td>✅ APTO</td><td>sem bloqueios críticos e suíte de testes verde</td></tr><tr><td>Produção</td><td>✅ APTO</td><td>critérios de segurança e estabilidade atendidos com as verificações executadas</td></tr></table>
+<p>Conclusão: o projeto atingiu 89/100 (Alta Integridade) e está apto, no máximo, para Produção. A liberação para produção depende dos critérios de segurança e estabilidade listados, não apenas da nota.</p></div>
+<h2>Problemas por gravidade</h2><div class="grid"><div class="stat"><b style="color:#d7263d">0</b>CRÍTICO</div><div class="stat"><b style="color:#f0700c">0</b>ALTO</div><div class="stat"><b style="color:#d4a106">0</b>MÉDIO</div><div class="stat"><b style="color:#3b82f6">0</b>BAIXO</div><div class="stat"><b style="color:#6b7280">0</b>INFORMATIVO</div></div>
+<p class="muted">0 achados únicos (0 brutos) ·
+confirmados 0 · riscos potenciais 0 ·
+hipóteses 0</p>
+<h2>Testes e cobertura</h2><div class="card"><p>8 testes com <code>node:test</code>: 8 passaram, <b>0 falharam</b>, 0 ignorados.</p><p>Cobertura: Linhas 100.0% · branches 100.0% · funções 100.0%</p>
+<p class="muted">Casos de borda nos testes: concorrência, entrada inválida, limites, vazio/nulo</p></div>
+<h2>Ferramentas</h2><div class="card" style="overflow:auto"><table><tr><th>Ferramenta</th><th>Versão</th><th>Status</th>
+<th>Verificações</th><th>Observação</th></tr><tr><td>scan_patterns.py</td><td><code>1.0</code></td><td>executada</td><td>sast_heuristic, error_handling_heuristic, perf_heuristic, duplication, complexity_heuristic</td><td>2 arquivos, 0 achados</td></tr><tr><td>scan_secrets.py</td><td><code>1.0</code></td><td>executada</td><td>secrets</td><td>3 arquivos, 0 achados</td></tr><tr><td>py-syntax</td><td><code>-</code></td><td>não se aplica</td><td>syntax</td><td>sem arquivos .py</td></tr><tr><td>node-syntax</td><td><code>node v22.23.4</code></td><td>executada</td><td>syntax</td><td>0 achados</td></tr><tr><td>tsc</td><td><code>-</code></td><td>não se aplica</td><td>types</td><td>sem tsconfig.json</td></tr><tr><td>eslint</td><td><code>-</code></td><td>não executada</td><td>lint</td><td>projeto sem configuração ESLint (ver references/tool-matrix.md para config sugerida; criar só com autorização)</td></tr><tr><td>prettier</td><td><code>-</code></td><td>não executada</td><td>format</td><td>sem configuração Prettier</td></tr><tr><td>npm-audit</td><td><code>npm 10.9.9</code></td><td>executada</td><td>deps</td><td>0 achados</td></tr><tr><td>semgrep</td><td><code>1.183.0</code></td><td>executada</td><td>sast</td><td>apenas ruleset local (registry semgrep.dev inacessível: sem rede ou bloqueado)</td></tr><tr><td>tests</td><td><code>node:test</code></td><td>executada</td><td>tests_executed, coverage, edge_case_tests</td><td>0 achados</td></tr><tr><td>Revisão manual (Claude)</td><td><code>-</code></td><td>executada</td><td>manual_security_review, manual_logic_review, manual_error_review, manual_perf_review, manual_arch_review</td><td>src/stats.js e test/stats.test.js, linha a linha (biblioteca de 35 linhas, sem I/O)</td></tr></table></div>
+<h2>Achados</h2><p class="muted">Nenhum achado nas verificações executadas.</p>
+<p class="muted" style="margin-top:32px">Este relatório reflete apenas as verificações listadas. Ausência de achados não
+prova ausência de vulnerabilidades.</p>
+</div></body></html>

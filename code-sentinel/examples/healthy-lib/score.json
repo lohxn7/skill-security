@@ -1,0 +1,206 @@
+{
+  "generated_at": "2026-11-04T00:13:41+00:00",
+  "project": "healthy-lib",
+  "score": 89,
+  "raw_score": 90.0,
+  "level": 4,
+  "level_name": "Alta Integridade",
+  "caps_applied": [
+    {
+      "max": 89,
+      "reason": "nível máximo exige lint/análise estática de qualidade executada (ESLint, ruff...)"
+    }
+  ],
+  "binding_cap": "nível máximo exige lint/análise estática de qualidade executada (ESLint, ruff...)",
+  "confidence": 0.9,
+  "confidence_label": "Alta",
+  "criteria": {
+    "tests": {
+      "name": "Testes automatizados",
+      "max": 20,
+      "points": 20.0,
+      "confidence": 1.0,
+      "health": 1.0,
+      "findings": 0,
+      "note": "8/8 testes passaram; cobertura de linhas: 100.0%; categorias de casos de borda: 4",
+      "checks_done": [
+        "testes executados",
+        "cobertura medida"
+      ],
+      "checks_missing": [],
+      "penalties": []
+    },
+    "security": {
+      "name": "Segurança e vulnerabilidades",
+      "max": 25,
+      "points": 25.0,
+      "confidence": 1.0,
+      "health": 1.0,
+      "findings": 0,
+      "checks_done": [
+        "auditoria de dependências",
+        "varredura de segredos",
+        "SAST dedicado (Semgrep/CodeQL/bandit)",
+        "SAST heurístico (scan_patterns)",
+        "revisão manual de segurança"
+      ],
+      "checks_missing": [],
+      "penalties": []
+    },
+    "integrity": {
+      "name": "Integridade e lógica",
+      "max": 20,
+      "points": 16.5,
+      "confidence": 0.82,
+      "health": 1.0,
+      "findings": 0,
+      "checks_done": [
+        "verificação de sintaxe",
+        "testes executados",
+        "revisão manual de lógica"
+      ],
+      "checks_missing": [
+        "lint"
+      ],
+      "penalties": []
+    },
+    "stability": {
+      "name": "Estabilidade e tratamento de erros",
+      "max": 15,
+      "points": 15.0,
+      "confidence": 1.0,
+      "health": 1.0,
+      "findings": 0,
+      "checks_done": [
+        "heurística de tratamento de erros",
+        "testes de borda/estresse",
+        "testes executados",
+        "revisão manual de erros"
+      ],
+      "checks_missing": [],
+      "penalties": []
+    },
+    "performance": {
+      "name": "Performance",
+      "max": 10,
+      "points": 7.0,
+      "confidence": 0.7,
+      "health": 1.0,
+      "findings": 0,
+      "checks_done": [
+        "heurística de performance",
+        "revisão manual de performance"
+      ],
+      "checks_missing": [
+        "testes de carga/benchmark"
+      ],
+      "penalties": []
+    },
+    "maintainability": {
+      "name": "Manutenibilidade",
+      "max": 10,
+      "points": 6.5,
+      "confidence": 0.65,
+      "health": 1.0,
+      "findings": 0,
+      "checks_done": [
+        "detecção de duplicação",
+        "heurística de complexidade",
+        "revisão de arquitetura"
+      ],
+      "checks_missing": [
+        "lint",
+        "formatação"
+      ],
+      "penalties": []
+    }
+  },
+  "findings_total": 0,
+  "findings_raw_total": 0,
+  "findings_resolved_by_triage": [],
+  "by_severity": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 0,
+    "LOW": 0,
+    "INFO": 0
+  },
+  "by_status": {},
+  "checks_executed": [
+    "complexity_heuristic",
+    "coverage",
+    "deps",
+    "duplication",
+    "edge_case_tests",
+    "error_handling_heuristic",
+    "manual_arch_review",
+    "manual_error_review",
+    "manual_logic_review",
+    "manual_perf_review",
+    "manual_security_review",
+    "perf_heuristic",
+    "sast",
+    "sast_heuristic",
+    "secrets",
+    "syntax",
+    "tests_executed"
+  ],
+  "checks_not_applicable": [
+    "types"
+  ],
+  "tests": {
+    "executed": true,
+    "framework": "node:test",
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "coverage": {
+      "lines": 100.0,
+      "branches": 100.0,
+      "functions": 100.0,
+      "source": "node --experimental-test-coverage",
+      "lines_reported": 100.0,
+      "files_never_loaded": [],
+      "note": "cobertura efetiva: arquivos-fonte nunca carregados pelos testes contam como 0% (0 arquivo(s)); valor reportado pelo runner: 100.0%"
+    },
+    "test_files": 1,
+    "edge_case_categories": [
+      "concorrência",
+      "entrada inválida",
+      "limites",
+      "vazio/nulo"
+    ],
+    "reason": null
+  },
+  "readiness": [
+    {
+      "stage": "Desenvolvimento",
+      "status": "APTO",
+      "reasons": [
+        "sempre apto para continuar o desenvolvimento"
+      ]
+    },
+    {
+      "stage": "Testes (QA)",
+      "status": "APTO",
+      "reasons": [
+        "código compila; pode ser exercitado por QA"
+      ]
+    },
+    {
+      "stage": "Homologação",
+      "status": "APTO",
+      "reasons": [
+        "sem bloqueios críticos e suíte de testes verde"
+      ]
+    },
+    {
+      "stage": "Produção",
+      "status": "APTO",
+      "reasons": [
+        "critérios de segurança e estabilidade atendidos com as verificações executadas"
+      ]
+    }
+  ]
+}

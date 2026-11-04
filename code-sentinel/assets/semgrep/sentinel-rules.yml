@@ -1,0 +1,148 @@
+# CODE SENTINEL — ruleset Semgrep local (offline).
+# Usado por run_tools.py quando o registry (p/owasp-top-ten) está inacessível,
+# e sempre combinado a ele quando há rede. Regras baseadas em AST com fluxo de
+# dados simples (taint) para reduzir falsos positivos em relação ao scan_patterns.py.
+rules:
+  - id: sentinel-js-sqli-taint
+    mode: taint
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Entrada da requisição chega a uma consulta SQL montada dinamicamente (SQL Injection).
+    metadata: {cwe: ["CWE-89"], owasp: ["A03:2021 - Injection"], confidence: HIGH}
+    pattern-sources:
+      - pattern-either:
+          - pattern: $REQ.query
+          - pattern: $REQ.body
+          - pattern: $REQ.params
+          - pattern: $REQ.headers
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: $DB.query($SQL, ...)
+              - pattern: $DB.execute($SQL, ...)
+              - pattern: $DB.raw($SQL, ...)
+          - focus-metavariable: $SQL
+
+  - id: sentinel-js-command-injection-taint
+    mode: taint
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Entrada da requisição chega a um comando de shell (Command Injection / RCE).
+    metadata: {cwe: ["CWE-78"], owasp: ["A03:2021 - Injection"], confidence: HIGH}
+    pattern-sources:
+      - pattern-either:
+          - pattern: $REQ.query
+          - pattern: $REQ.body
+          - pattern: $REQ.params
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: exec($CMD, ...)
+              - pattern: execSync($CMD, ...)
+              - pattern: $CP.exec($CMD, ...)
+              - pattern: $CP.execSync($CMD, ...)
+          - focus-metavariable: $CMD
+
+  - id: sentinel-js-eval-taint
+    mode: taint
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Entrada da requisição é avaliada como código (eval/new Function) — execução remota de código.
+    metadata: {cwe: ["CWE-95"], owasp: ["A03:2021 - Injection"], confidence: HIGH}
+    pattern-sources:
+      - pattern-either:
+          - pattern: $REQ.query
+          - pattern: $REQ.body
+          - pattern: $REQ.params
+    pattern-sinks:
+      - pattern-either:
+          - pattern: eval(...)
+          - pattern: new Function(...)
+
+  - id: sentinel-js-path-traversal-taint
+    mode: taint
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: Caminho de arquivo derivado da requisição sem normalização/validação (Path Traversal).
+    metadata: {cwe: ["CWE-22"], owasp: ["A01:2021 - Broken Access Control"], confidence: MEDIUM}
+    pattern-sources:
+      - pattern-either:
+          - pattern: $REQ.query
+          - pattern: $REQ.params
+          - pattern: $REQ.body
+    pattern-sanitizers:
+      - pattern: path.basename(...)
+    pattern-sinks:
+      - pattern-either:
+          - pattern: fs.readFile(...)
+          - pattern: fs.readFileSync(...)
+          - pattern: fs.createReadStream(...)
+          - pattern: $RES.sendFile(...)
+
+  - id: sentinel-js-jwt-hardcoded-secret
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: JWT assinado com segredo literal no código.
+    metadata: {cwe: ["CWE-798"], owasp: ["A07:2021 - Identification and Authentication Failures"], confidence: HIGH}
+    patterns:
+      - pattern-either:
+          - pattern: $JWT.sign($P, "...", ...)
+          - patterns:
+              - pattern: $JWT.sign($P, $S, ...)
+              - pattern-inside: |
+                  const $S = "...";
+                  ...
+
+  - id: sentinel-js-weak-password-hash
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: Hash MD5/SHA-1 aplicado a senha — use bcrypt/scrypt/argon2.
+    metadata: {cwe: ["CWE-916"], owasp: ["A02:2021 - Cryptographic Failures"], confidence: MEDIUM}
+    pattern-either:
+      - pattern: crypto.createHash("md5").update(...)
+      - pattern: crypto.createHash("sha1").update(...)
+
+  - id: sentinel-py-sqli-fstring
+    languages: [python]
+    severity: ERROR
+    message: SQL montado com f-string/format/concatenação em cursor.execute (SQL Injection).
+    metadata: {cwe: ["CWE-89"], owasp: ["A03:2021 - Injection"], confidence: MEDIUM}
+    pattern-either:
+      - pattern: $C.execute(f"...", ...)
+      - pattern: $C.execute("..." % $X, ...)
+      - pattern: $C.execute("...".format(...), ...)
+      - pattern: $C.execute("..." + $X, ...)
+
+  - id: sentinel-py-os-system-concat
+    languages: [python]
+    severity: ERROR
+    message: Comando de shell montado com concatenação (Command Injection).
+    metadata: {cwe: ["CWE-78"], owasp: ["A03:2021 - Injection"], confidence: MEDIUM}
+    pattern-either:
+      - pattern: os.system("..." + $X)
+      - pattern: os.system(f"...")
+      - pattern: subprocess.$F("..." + $X, ..., shell=True, ...)
+
+  - id: sentinel-py-unsafe-deserialization
+    languages: [python]
+    severity: ERROR
+    message: Desserialização insegura (pickle / yaml.load sem SafeLoader) — pode executar código.
+    metadata: {cwe: ["CWE-502"], owasp: ["A08:2021 - Software and Data Integrity Failures"], confidence: HIGH}
+    pattern-either:
+      - pattern: pickle.loads(...)
+      - pattern: pickle.load(...)
+      - patterns:
+          - pattern: yaml.load(...)
+          - pattern-not: yaml.load(..., Loader=yaml.SafeLoader, ...)
+          - pattern-not: yaml.load(..., Loader=SafeLoader, ...)
+
+  - id: sentinel-py-requests-no-timeout
+    languages: [python]
+    severity: INFO
+    message: Requisição HTTP sem timeout pode travar o worker indefinidamente.
+    metadata: {cwe: ["CWE-400"], confidence: HIGH}
+    patterns:
+      - pattern-either:
+          - pattern: requests.$M(...)
+      - metavariable-regex: {metavariable: $M, regex: ^(get|post|put|patch|delete|head|request)$}
+      - pattern-not: requests.$M(..., timeout=$T, ...)

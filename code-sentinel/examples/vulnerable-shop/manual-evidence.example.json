@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "manual_security_review",
+    "manual_logic_review",
+    "manual_error_review"
+  ],
+  "scope": "src/ inteiro linha a linha (projeto pequeno); src/legacy por amostragem",
+  "summary": "O vulnerable-shop não está apto para nenhum ambiente além de desenvolvimento. Há execução remota de código comprovada por fluxo de dados (eval e exec com entrada da requisição), SQL injection, credenciais de nuvem e de banco de dados no código, um módulo que não compila e duas regras de negócio quebradas confirmadas pelos próprios testes. A prioridade imediata é remover/rotacionar segredos e eliminar eval/exec/concatenação SQL; em seguida corrigir pricing.js e atualizar dependências com CVEs."
+}

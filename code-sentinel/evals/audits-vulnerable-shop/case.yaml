@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: audits-vulnerable-shop
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  A skill roda a auditoria (sentinel.py audit --run-tests), faz triagem dos achados críticos lendo o código,
+  gera report.md/report.html em vulnerable-shop/.code-sentinel/ e responde com CODE INTEGRITY SCORE no
+  Nível 1 (Código Exposto), imagem/caminho do cadeado, os principais riscos com arquivo:linha
+  (SQL injection, command injection, eval, segredos expostos, erro de sintaxe, testes falhando) e parecer
+  "não apto" para homologação e produção, sem alterar o código do projeto.

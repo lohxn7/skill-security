@@ -1,0 +1,6 @@
+.code-sentinel/
+node_modules/
+__pycache__/
+*.pyc
+code-sentinel-workspace/
+.ruff_cache/

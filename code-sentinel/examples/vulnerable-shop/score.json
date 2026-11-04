@@ -1,0 +1,376 @@
+{
+  "generated_at": "2026-11-04T00:13:33+00:00",
+  "project": "vulnerable-shop",
+  "score": 25,
+  "raw_score": 25.1,
+  "level": 1,
+  "level_name": "Código Exposto",
+  "caps_applied": [
+    {
+      "max": 59,
+      "reason": "9 problema(s) CRÍTICO(s) confirmado(s)"
+    },
+    {
+      "max": 74,
+      "reason": "2 teste(s) falhando"
+    },
+    {
+      "max": 74,
+      "reason": "cobertura de linhas 12% (< 60%)"
+    },
+    {
+      "max": 74,
+      "reason": "risco CRÍTICO potencial ainda não descartado"
+    },
+    {
+      "max": 74,
+      "reason": "vulnerabilidade ALTA confirmada"
+    },
+    {
+      "max": 89,
+      "reason": "achado(s) de gravidade ALTA em aberto"
+    }
+  ],
+  "binding_cap": null,
+  "confidence": 0.86,
+  "confidence_label": "Alta",
+  "criteria": {
+    "tests": {
+      "name": "Testes automatizados",
+      "max": 20,
+      "points": 7.9,
+      "confidence": 1.0,
+      "health": 0.67,
+      "findings": 2,
+      "note": "4/6 testes passaram; cobertura de linhas: 12.4%; categorias de casos de borda: 2",
+      "checks_done": [
+        "testes executados",
+        "cobertura medida"
+      ],
+      "checks_missing": [],
+      "penalties": []
+    },
+    "security": {
+      "name": "Segurança e vulnerabilidades",
+      "max": 25,
+      "points": 0.0,
+      "confidence": 1.0,
+      "health": 0.0,
+      "findings": 31,
+      "checks_done": [
+        "auditoria de dependências",
+        "varredura de segredos",
+        "SAST dedicado (Semgrep/CodeQL/bandit)",
+        "SAST heurístico (scan_patterns)",
+        "revisão manual de segurança"
+      ],
+      "checks_missing": [],
+      "penalties": [
+        {
+          "rule": "semgrep:sentinel-py-unsafe-deserialization",
+          "count": 2,
+          "penalty": 0.9
+        },
+        {
+          "rule": "npm-audit:minimist",
+          "count": 1,
+          "penalty": 0.6
+        },
+        {
+          "rule": "SECRET-AWS-ACCESS-KEY",
+          "count": 1,
+          "penalty": 0.6
+        },
+        {
+          "rule": "semgrep:sentinel-js-sqli-taint",
+          "count": 1,
+          "penalty": 0.6
+        },
+        {
+          "rule": "semgrep:sentinel-js-command-injection-taint",
+          "count": 1,
+          "penalty": 0.6
+        },
+        {
+          "rule": "semgrep:sentinel-js-eval-taint",
+          "count": 1,
+          "penalty": 0.6
+        },
+        {
+          "rule": "semgrep:sentinel-py-os-system-concat",
+          "count": 1,
+          "penalty": 0.6
+        },
+        {
+          "rule": "SECRET-HARDCODED",
+          "count": 3,
+          "penalty": 0.525
+        }
+      ],
+      "capped": "vulnerabilidade crítica confirmada: segurança limitada a 5/25"
+    },
+    "integrity": {
+      "name": "Integridade e lógica",
+      "max": 20,
+      "points": 0.0,
+      "confidence": 1.0,
+      "health": 0.0,
+      "findings": 7,
+      "checks_done": [
+        "verificação de sintaxe",
+        "lint",
+        "testes executados",
+        "revisão manual de lógica"
+      ],
+      "checks_missing": [],
+      "penalties": [
+        {
+          "rule": "SYNTAX-ERROR",
+          "count": 1,
+          "penalty": 0.6
+        },
+        {
+          "rule": "MANUAL-DISCOUNT-RANGE",
+          "count": 1,
+          "penalty": 0.3
+        },
+        {
+          "rule": "JS-UNDECLARED-DEPENDENCY",
+          "count": 1,
+          "penalty": 0.3
+        },
+        {
+          "rule": "MANUAL-AVG-EMPTY",
+          "count": 1,
+          "penalty": 0.3
+        },
+        {
+          "rule": "ruff:B006",
+          "count": 1,
+          "penalty": 0.12
+        },
+        {
+          "rule": "JS-FOREACH-ASYNC",
+          "count": 1,
+          "penalty": 0.06
+        },
+        {
+          "rule": "JS-PARSEINT-NO-RADIX",
+          "count": 1,
+          "penalty": 0.02
+        }
+      ]
+    },
+    "stability": {
+      "name": "Estabilidade e tratamento de erros",
+      "max": 15,
+      "points": 7.2,
+      "confidence": 0.65,
+      "health": 0.74,
+      "findings": 5,
+      "checks_done": [
+        "heurística de tratamento de erros",
+        "testes executados",
+        "revisão manual de erros"
+      ],
+      "checks_missing": [
+        "testes de borda/estresse"
+      ],
+      "penalties": [
+        {
+          "rule": "JS-EMPTY-CATCH",
+          "count": 1,
+          "penalty": 0.06
+        },
+        {
+          "rule": "JS-JSON-PARSE-UNGUARDED",
+          "count": 1,
+          "penalty": 0.06
+        },
+        {
+          "rule": "PY-BARE-EXCEPT",
+          "count": 1,
+          "penalty": 0.06
+        },
+        {
+          "rule": "PY-REQUESTS-NO-TIMEOUT",
+          "count": 1,
+          "penalty": 0.06
+        },
+        {
+          "rule": "MANUAL-SESSION-MEMORY",
+          "count": 1,
+          "penalty": 0.024
+        }
+      ]
+    },
+    "performance": {
+      "name": "Performance",
+      "max": 10,
+      "points": 3.0,
+      "confidence": 0.35,
+      "health": 0.87,
+      "findings": 5,
+      "checks_done": [
+        "heurística de performance"
+      ],
+      "checks_missing": [
+        "testes de carga/benchmark",
+        "revisão manual de performance"
+      ],
+      "penalties": [
+        {
+          "rule": "JS-UNBOUNDED-COLLECTION",
+          "count": 1,
+          "penalty": 0.06
+        },
+        {
+          "rule": "GEN-SELECT-STAR",
+          "count": 2,
+          "penalty": 0.03
+        },
+        {
+          "rule": "JS-SYNC-IO",
+          "count": 1,
+          "penalty": 0.02
+        },
+        {
+          "rule": "JS-INTERVAL-NO-CLEAR",
+          "count": 1,
+          "penalty": 0.02
+        }
+      ]
+    },
+    "maintainability": {
+      "name": "Manutenibilidade",
+      "max": 10,
+      "points": 7.0,
+      "confidence": 0.75,
+      "health": 0.94,
+      "findings": 2,
+      "checks_done": [
+        "lint",
+        "detecção de duplicação",
+        "heurística de complexidade"
+      ],
+      "checks_missing": [
+        "formatação",
+        "revisão de arquitetura"
+      ],
+      "penalties": [
+        {
+          "rule": "ruff:E722",
+          "count": 1,
+          "penalty": 0.04
+        },
+        {
+          "rule": "GEN-DUPLICATE-CODE",
+          "count": 1,
+          "penalty": 0.02
+        }
+      ]
+    }
+  },
+  "findings_total": 52,
+  "findings_raw_total": 68,
+  "findings_resolved_by_triage": [],
+  "by_severity": {
+    "CRITICAL": 10,
+    "HIGH": 16,
+    "MEDIUM": 15,
+    "LOW": 11,
+    "INFO": 0
+  },
+  "by_status": {
+    "confirmed": 29,
+    "potential": 22,
+    "hypothesis": 1
+  },
+  "checks_executed": [
+    "complexity_heuristic",
+    "coverage",
+    "deps",
+    "duplication",
+    "error_handling_heuristic",
+    "lint",
+    "manual_error_review",
+    "manual_logic_review",
+    "manual_security_review",
+    "perf_heuristic",
+    "sast",
+    "sast_heuristic",
+    "secrets",
+    "syntax",
+    "tests_executed"
+  ],
+  "checks_not_applicable": [
+    "types"
+  ],
+  "tests": {
+    "executed": true,
+    "framework": "node:test",
+    "total": 6,
+    "passed": 4,
+    "failed": 2,
+    "skipped": 0,
+    "coverage": {
+      "lines": 12.4,
+      "branches": 100.0,
+      "functions": 100.0,
+      "source": "node --experimental-test-coverage",
+      "lines_reported": 100.0,
+      "files_never_loaded": [
+        "src/db.js",
+        "src/broken.js",
+        "src/server.js",
+        "src/validators.js",
+        "src/legacy/validators-old.js"
+      ],
+      "note": "cobertura efetiva: arquivos-fonte nunca carregados pelos testes contam como 0% (5 arquivo(s)); valor reportado pelo runner: 100.0%"
+    },
+    "test_files": 1,
+    "edge_case_categories": [
+      "entrada inválida",
+      "vazio/nulo"
+    ],
+    "reason": null
+  },
+  "readiness": [
+    {
+      "stage": "Desenvolvimento",
+      "status": "APTO COM RESSALVAS",
+      "reasons": [
+        "sempre apto para continuar o desenvolvimento",
+        "1 erro(s) de compilação/tipo bloqueiam partes do código"
+      ]
+    },
+    {
+      "stage": "Testes (QA)",
+      "status": "NÃO APTO",
+      "reasons": [
+        "há erros de sintaxe/compilação"
+      ]
+    },
+    {
+      "stage": "Homologação",
+      "status": "NÃO APTO",
+      "reasons": [
+        "9 problema(s) CRÍTICO(s) confirmado(s)",
+        "2 teste(s) falhando",
+        "CIS 25 < 60"
+      ]
+    },
+    {
+      "stage": "Produção",
+      "status": "NÃO APTO",
+      "reasons": [
+        "10 achado(s) CRÍTICO(s) em aberto (confirmados ou potenciais)",
+        "11 achado(s) de segurança ALTO(s) em aberto",
+        "14 achado(s) ALTO(s) confirmados",
+        "suíte de testes não está verde",
+        "cobertura 12% < 70%",
+        "CIS 25 < 75"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "source": "manual",
+  "findings": [
+    {
+      "title": "Média de avaliações retorna NaN para produto sem avaliações",
+      "rule_id": "MANUAL-AVG-EMPTY",
+      "file": "src/pricing.js",
+      "line": 5,
+      "category": "integrity",
+      "severity": "HIGH",
+      "status": "confirmed",
+      "override": true,
+      "description": "calculateAverageRating([]) divide 0 por 0 e retorna NaN; db.ratingsFor() retorna [] para produtos novos.",
+      "failure_mode": "GET /products/:id/rating responde {\"average\": null} (NaN serializado) e a UI exibe 'NaN estrelas'; ordenações por nota ficam inconsistentes.",
+      "likelihood": "alta",
+      "impact": "Todo produto sem avaliações quebra a exibição de nota.",
+      "fix": "Tratar lista vazia explicitamente antes de dividir.",
+      "fixed_code": "function calculateAverageRating(ratings) {\n  if (!Array.isArray(ratings) || ratings.length === 0) return 0;\n  return ratings.reduce((s, r) => s + r, 0) / ratings.length;\n}",
+      "evidence": "test/pricing.test.js › 'media de avaliacoes com lista vazia retorna 0' falha: Expected values to be strictly equal (NaN !== 0)",
+      "justification": "Reproduzido pela suíte do projeto.",
+      "cwe": "CWE-369"
+    },
+    {
+      "title": "Desconto acima de 100% gera preço negativo",
+      "rule_id": "MANUAL-DISCOUNT-RANGE",
+      "file": "src/pricing.js",
+      "line": 9,
+      "category": "integrity",
+      "severity": "HIGH",
+      "status": "confirmed",
+      "description": "applyDiscount não valida o percentual; applyDiscount(100, 150) retorna -50.",
+      "failure_mode": "Cupom mal configurado (ou manipulado) gera pedido com valor negativo — crédito indevido ao cliente.",
+      "likelihood": "media",
+      "impact": "Perda financeira direta.",
+      "fix": "Validar 0 ≤ percent ≤ 100 e price ≥ 0, lançando RangeError.",
+      "fixed_code": "if (percent < 0 || percent > 100) throw new RangeError('percentual fora de 0..100');",
+      "evidence": "test/pricing.test.js › 'desconto invalido (acima de 100%) deve lancar erro' falha: Missing expected exception (RangeError)"
+    },
+    {
+      "title": "Sessões em memória do processo quebram com múltiplas instâncias",
+      "rule_id": "MANUAL-SESSION-MEMORY",
+      "file": "src/server.js",
+      "line": 44,
+      "category": "stability",
+      "severity": "MEDIUM",
+      "status": "hypothesis",
+      "description": "Tokens são guardados em sessionCache (objeto local do processo).",
+      "failure_mode": "Com 2+ réplicas atrás de um balanceador, o usuário perde a sessão aleatoriamente; um restart desloga todos.",
+      "likelihood": "desconhecida",
+      "impact": "Logouts aleatórios em produção escalada.",
+      "fix": "Usar store compartilhado (Redis) com TTL, ou JWT verificado sem estado no servidor.",
+      "evidence": "Depende da topologia de deploy (não disponível no repositório)."
+    }
+  ]
+}

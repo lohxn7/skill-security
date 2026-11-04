@@ -1,0 +1,16 @@
+{
+  "name": "vulnerable-shop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "FIXTURE COM FALHAS INTENCIONAIS para validar o CODE SENTINEL. NAO USAR EM PRODUCAO.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "lodash": "4.17.15",
+    "minimist": "1.2.0"
+  }
+}
